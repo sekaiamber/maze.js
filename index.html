@@ -16,5 +16,48 @@
 <body>
     <div id="main"></div>
     <div id="console"></div>
+    <script>
+        var m = null;
+        var buildMaze = function() {
+            if(window.Maze) {
+                var $main = $("#main");
+                m = new Maze(10, 10);
+                for (var y = 0; y < m.heigth; y++) {
+                    var $row = $('<div class="maze-row"></div>');
+                    for (var x = 0; x < m.width; x++) {
+                        var $block = $('<div class="maze-block"></div>');
+                        var wall = m[y][x].getWall();
+                        if (wall.top) $block.addClass('t');
+                        if (wall.right) $block.addClass('r');
+                        if (wall.bottom) $block.addClass('b');
+                        if (wall.left) $block.addClass('l');
+                        $row.append($block);
+                    }
+                    $main.append($row);
+                }
+            } else {
+                setTimeout(buildMaze);
+            }
+        };
+        setTimeout(buildMaze);
+        var updateMaze = function() {
+            var $main = $("#main");
+            for (var y = 0; y < m.heigth; y++) {
+                var $row = $('.maze-row:eq(' + y + ')', $main);
+                for (var x = 0; x < m.width; x++) {
+                    var $block = $('.maze-block:eq(' + x + ')', $row);
+                    var wall = m[y][x].getWall();
+                    $block.removeClass('t');
+                    $block.removeClass('r');
+                    $block.removeClass('b');
+                    $block.removeClass('l');
+                    if (wall.top) $block.addClass('t');
+                    if (wall.right) $block.addClass('r');
+                    if (wall.bottom) $block.addClass('b');
+                    if (wall.left) $block.addClass('l');
+                }
+            }
+        };
+    </script>
 </body>
 </html>
