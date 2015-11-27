@@ -11,6 +11,6 @@ define({
         return Math.random() * (max - min) + min;
     },
     getRandomInt: function(min, max) {
-        return Math.floor(this.getRandom(min, max + 1));
+        return Math.floor(Math.random() * (max - min) + min);
     }
 });

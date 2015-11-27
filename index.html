@@ -21,7 +21,7 @@
         var buildMaze = function() {
             if(window.Maze) {
                 var $main = $("#main");
-                m = new Maze(10, 10);
+                m = new Maze(15, 15);
                 for (var y = 0; y < m.heigth; y++) {
                     var $row = $('<div class="maze-row"></div>');
                     for (var x = 0; x < m.width; x++) {
@@ -39,7 +39,7 @@
                 setTimeout(buildMaze);
             }
         };
-        setTimeout(buildMaze);
+        // setTimeout(buildMaze);
         var updateMaze = function() {
             var $main = $("#main");
             for (var y = 0; y < m.heigth; y++) {
