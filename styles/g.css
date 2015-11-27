@@ -1,0 +1,28 @@
+.maze-row
+{
+    clear: both;
+}
+.maze-block
+{
+    float: left;
+    height: 50px;
+    width: 50px;
+    border: rgb(192, 230, 248) solid 2px;
+    background: rgb(192, 230, 248);
+}
+.maze-block.t
+{
+    border-top: #000 solid 2px;
+}
+.maze-block.r
+{
+    border-right: #000 solid 2px;
+}
+.maze-block.b
+{
+    border-bottom: #000 solid 2px;
+}
+.maze-block.l
+{
+    border-left: #000 solid 2px;
+}

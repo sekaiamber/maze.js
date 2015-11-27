@@ -1,8 +1,10 @@
 /* global $ */
 define([
-    'maze'
-], function(maze) {
+    'maze',
+    'helper'
+], function(Maze, helper) {
     'use strict';
-    window.maze = maze;
-    return maze;
+    window.Maze = Maze;
+    window.MazeHelper = helper;
+    return Maze;
 });
