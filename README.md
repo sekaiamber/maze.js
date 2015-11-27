@@ -4,7 +4,7 @@
 
 This is a javascript library used for making a maze.
 
-# Usage
+## Usage
 
 ```javascript
 // make a 20 blocks width and 10 blocks height maze.
@@ -16,7 +16,7 @@ var block = maze.get(1, 2);
 var block2 = maze[3][1];
 ```
 
-# Develop
+## Develop
 
 Go into `index.html`, and change the config or require.js.
 
@@ -37,7 +37,7 @@ Go into `index.html`, and change the config or require.js.
 </script>
 ```
 
-# Release
+## Release
 
 I use `r.js` to optimize requirejs's module, run following command:
 
