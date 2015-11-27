@@ -1,7 +1,7 @@
 /* global $ */
 define([
-    'maze',
-    'helper'
+    './maze',
+    './helper'
 ], function(Maze, helper) {
     'use strict';
     window.Maze = Maze;
