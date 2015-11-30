@@ -1,9 +1,13 @@
 define({
-    extend: function(a, b) {
-        for (var key in b) {
-            if (b.hasOwnProperty(key)) {
-                a[key] = b[key];
-            }
+    extend: function() {
+        var a = arguments[0];
+        for (var i = 1; i < arguments.length; i++) {
+            var b = arguments[i];
+            for (var key in b) {
+                if (b.hasOwnProperty(key)) {
+                    a[key] = b[key];
+                }
+            }   
         }
         return a;
     },

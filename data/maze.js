@@ -1,8 +1,9 @@
 define([
+    './config',
     './block',
     './builder',
     './helper'
-],function(Block, builder, helper) {
+],function(config, Block, builder, helper) {
     'use strict';
     var Cls_maze = function(width, heigth) {
         if (typeof width == 'object') {
@@ -98,6 +99,6 @@ define([
             }
             return null;
         }
-    });
+    }, config);
     return Cls_maze;
 });
