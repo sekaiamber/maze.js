@@ -9,69 +9,52 @@
     <script src="scripts/require.js"></script>
     <script>
         // Release
-        // var rconfig = {
-        //     paths: {
-        //         "main": "scripts/maze"
-        //     }
-        // }
-        // Develop
         var rconfig = {
-            baseUrl: 'data',
+            paths: {
+                "main": "scripts/maze"
+            }
         }
         require.config(rconfig);
         require(["main"]);
     </script>
     <link rel="stylesheet" href="styles/g.css">
-<!--
-    ==TODO==
-    <link rel="shortcut icon" href="favicon.png" />
--->
 </head>
 <body>
+    <div>
+        <div id="update" style="display:inline-block; border: 1px solid #000; padding: 10px 20px; font-size: 30px;margin-bottom: 20px;cursor: pointer;border-radius: 5px;">Update Maze</div>
+    </div>
     <div id="main"></div>
-    <div id="console"></div>
     <script>
-        var m = null;
-        var buildMaze = function() {
-            if(window.Maze) {
-                var $main = $("#main");
-                m = new Maze(15, 15);
-                for (var y = 0; y < m.heigth; y++) {
-                    var $row = $('<div class="maze-row"></div>');
-                    for (var x = 0; x < m.width; x++) {
-                        var $block = $('<div class="maze-block"></div>');
-                        var wall = m[y][x].getWall();
-                        if (wall.top) $block.addClass('t');
-                        if (wall.right) $block.addClass('r');
-                        if (wall.bottom) $block.addClass('b');
-                        if (wall.left) $block.addClass('l');
-                        $row.append($block);
+        $(document).ready(function() {
+            var m = null;
+            var buildMaze = function() {
+                if(window.Maze) {
+                    var $main = $("#main");
+                    m = new Maze(15, 15);
+                    for (var y = 0; y < m.heigth; y++) {
+                        var $row = $('<div class="maze-row"></div>');
+                        for (var x = 0; x < m.width; x++) {
+                            var $block = $('<div class="maze-block"></div>');
+                            var wall = m[y][x].getWall();
+                            if (wall.top) $block.addClass('t');
+                            if (wall.right) $block.addClass('r');
+                            if (wall.bottom) $block.addClass('b');
+                            if (wall.left) $block.addClass('l');
+                            $row.append($block);
+                        }
+                        $main.append($row);
                     }
-                    $main.append($row);
+                } else {
+                    setTimeout(buildMaze);
                 }
-            } else {
-                setTimeout(buildMaze);
-            }
-        };
-        setTimeout(buildMaze);
-        var updateMaze = function() {
-            var $main = $("#main");
-            for (var y = 0; y < m.heigth; y++) {
-                var $row = $('.maze-row:eq(' + y + ')', $main);
-                for (var x = 0; x < m.width; x++) {
-                    var $block = $('.maze-block:eq(' + x + ')', $row);
-                    var wall = m[y][x].getWall();
-                    $block.removeClass('t');
-                    $block.removeClass('r');
-                    $block.removeClass('b');
-                    $block.removeClass('l');
-                    if (wall.top) $block.addClass('t');
-                    if (wall.right) $block.addClass('r');
-                    if (wall.bottom) $block.addClass('b');
-                    if (wall.left) $block.addClass('l');
-                }
-            }
-        };
+            };
+            setTimeout(buildMaze);
+            $("#update").click(function() {
+                var $main = $("#main");
+                $main.empty();
+                buildMaze();
+            });
+        })
     </script>
 </body>
 </html>
